@@ -7,6 +7,7 @@ from django.dispatch import receiver
 class Task(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    slug = models.SlugField(max_length=200, null=True, blank=True)
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
@@ -19,6 +20,13 @@ class Task(models.Model):
 
 
 # pre_save.connect(task_handler, sender=Task)
+
+
+@receiver(pre_save, sender=Task)
+def task_handler(sender, instance, **kwargs):
+    print('Writing signals Using receiver')
+    print(instance.name)
+    print(instance.description)
 
 
 
