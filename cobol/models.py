@@ -45,7 +45,7 @@ def task_handler_post(sender, instance, **kwargs):
 
 @receiver(pre_delete, sender=Task)
 def task_handler_pre_delete(sender, instance, **kwargs):
-    data = {'task': instance.task, 'desc': instance.description, 'slug': instance.slug}
+    data = {'task': instance.name, 'desc': instance.description, 'slug': instance.slug}
     History.objects.create(history=json.dumps(data))
 
 
