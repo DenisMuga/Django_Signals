@@ -5,3 +5,4 @@ from .models import*
 
 admin.site.register(Task)
 admin.site.register(TaskDate)
+admin.site.register(History)
